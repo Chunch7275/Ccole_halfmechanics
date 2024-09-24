@@ -23,7 +23,7 @@ Many things
 
 --TO FIX
 -Must figure out a way to fix the "overheal" effect that the healing script does. we DO NOT want a double-heal. 
--edit Sky to hopefully have a 'poop' procedural cloud effect (using amplify i probably could?)
+-edit Sky to hopefully have a basic procedural cloud effect (using amplify i probably could?)
 -revamp map to have enterable interiors. 
 -Create "remotedoor" script to allow secret doors to be remotely opened.
 */
