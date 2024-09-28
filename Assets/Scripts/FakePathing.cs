@@ -61,3 +61,8 @@ public class FakePathing : MonoBehaviour
         agent.SetDestination(waypoints[currentWaypointIndex].position);
     }
 }
+/*
+ * resources used *
+ * https://www.youtube.com/watch?v=UjkSFoLxesw&ab_channel=Dave%2FGameDevelopment
+ * https://medium.com/@dnwesdman/modular-stealth-enemy-ai-in-unity-3133327d48c
+ */
