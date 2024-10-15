@@ -8,9 +8,14 @@ public class playerstats : MonoBehaviour
     public int health = 100;         
     public int stealthValue = 5;      
     public int maxHealth = 100;       
-    public int healAmount = 35;       
+    public int healAmount = 35;
+
+    private GameManager controller;
+
     void Start()
     {
+        controller = GameObject.Find("GameManager").GetComponent<GameManager>();
+
     }
    // Maybe saturate could work rather than a manual clamp? ex: health = saturate(health);
    
@@ -36,6 +41,7 @@ public class playerstats : MonoBehaviour
     void Die()
     {
         Debug.Log("Player has died.");
+        controller.gameOver = true;
     }
 
     void UseHealItem()
@@ -58,6 +64,11 @@ public class playerstats : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.H))
         {
             UseHealItem();
+        }
+
+        if (health <= 0)
+        {
+            Die();
         }
     }
 }

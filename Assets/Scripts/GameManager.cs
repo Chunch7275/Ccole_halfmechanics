@@ -4,10 +4,12 @@ public class GameManager : MonoBehaviour
 {
     // Static global variable for healing items
     public static int healItems = 0;
+    public bool gameOver = false;
 
     // Optionally, you can reset or log the number of heal items
     void Start()
     {
+
         healItems = 0;  // Reset at the start of the game
         Debug.Log("Heal items: " + healItems);
     }
