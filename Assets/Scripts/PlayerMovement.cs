@@ -19,11 +19,14 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 moveDirection = Vector3.zero;
     private float rotationX = 0;
     private CharacterController characterController;
+    private GameManager controller;
+
 
     private bool canMove = true;
 
     void Start()
     {
+        controller = GameObject.Find("GameManager").GetComponent<GameManager>();
         characterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -31,6 +34,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (controller.gameOver == true)
+        {
+            canMove = false;
+        }
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
 
