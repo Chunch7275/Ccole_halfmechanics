@@ -17,13 +17,11 @@ public class playerstats : MonoBehaviour
         controller = GameObject.Find("GameManager").GetComponent<GameManager>();
 
     }
-   // Maybe saturate could work rather than a manual clamp? ex: health = saturate(health);
-   
+
     public void TakeDamage(int damage)
     {
         health -= damage;
         health = Mathf.Clamp(health, 0, maxHealth);  
-     
 
         if (health <= 0)
         {
@@ -58,9 +56,8 @@ public class playerstats : MonoBehaviour
         }
     }
 
-    void Update() 
+    void Update()
     {
-    // maybe double-heal issue comes from healing input being stored in void update? Not certain though.
         if (Input.GetKeyDown(KeyCode.H))
         {
             UseHealItem();

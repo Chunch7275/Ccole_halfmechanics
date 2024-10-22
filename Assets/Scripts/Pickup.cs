@@ -10,9 +10,9 @@ public class Pickup : MonoBehaviour
             if (stats != null)
             {
                 stats.HealItems++;
-         
+
                 GameManager.LogHealItems();
-               // log all avail foodstuffs items as healing items. 
+
                 Destroy(gameObject);
             }
         }
