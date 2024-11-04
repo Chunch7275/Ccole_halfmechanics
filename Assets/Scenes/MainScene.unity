@@ -2218,6 +2218,7 @@ MonoBehaviour:
   chaseRange: 30
   chaseSpeedMultiplier: 1.3
   walkingSound: {fileID: 8300000, guid: a63a435030e95444ebbed921c63ba736, type: 3}
+  playerobj: {fileID: 1066798625}
 --- !u!195 &498652653
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3444,6 +3445,7 @@ MonoBehaviour:
   chaseRange: 20
   chaseSpeedMultiplier: 1.5
   walkingSound: {fileID: 8300000, guid: a63a435030e95444ebbed921c63ba736, type: 3}
+  playerobj: {fileID: 0}
 --- !u!1001 &689638994
 PrefabInstance:
   m_ObjectHideFlags: 0

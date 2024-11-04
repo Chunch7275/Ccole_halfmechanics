@@ -70,6 +70,7 @@ public class EnemyShootAtPlayer : MonoBehaviour
 
     void Update()
     {
+        shootingRange = shootingRange * (playerstats.stealthValue/5);
         // Check if the game is over, and stop all actions if it is
         if (gameManager != null && gameManager.gameOver)
         {
