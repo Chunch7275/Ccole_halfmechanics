@@ -1,27 +1,30 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class playerstats : MonoBehaviour
 {
-    public float HealItems = 3f;     
-    public int health = 100;         
-    public int stealthValue = 5;      
-    public int maxHealth = 100;       
+    public float HealItems = 3f;
+    public int health = 100;
+    public int stealthValue = 5;
+    public int maxHealth = 100;
     public int healAmount = 35;
 
     private GameManager controller;
 
+    // Power-up related variables
+    private bool isPowerUpActive = false;
+    private float powerUpDuration = 60f;
+    private int originalHealth;
+    private int originalStealth;
+
     void Start()
     {
         controller = GameObject.Find("GameManager").GetComponent<GameManager>();
-
     }
 
     public void TakeDamage(int damage)
     {
         health -= damage;
-        health = Mathf.Clamp(health, 0, maxHealth);  
 
         if (health <= 0)
         {
@@ -32,7 +35,6 @@ public class playerstats : MonoBehaviour
     public void Heal(int healAmount)
     {
         health += healAmount;
-        health = Mathf.Clamp(health, 0, maxHealth);  
         Debug.Log("Player healed! Current health: " + health);
     }
 
@@ -46,8 +48,8 @@ public class playerstats : MonoBehaviour
     {
         if (HealItems > 0)
         {
-            Heal(healAmount);   
-            HealItems--;        
+            Heal(healAmount);
+            HealItems--;
             Debug.Log("Used a heal item. Remaining heal items: " + HealItems);
         }
         else
@@ -66,6 +68,49 @@ public class playerstats : MonoBehaviour
         if (health <= 0)
         {
             Die();
+        }
+    }
+
+    // Coroutine for the power-up effect
+    private IEnumerator PowerUpCoroutine()
+    {
+        if (isPowerUpActive) yield break;
+
+        isPowerUpActive = true;
+
+        // Store original values
+        originalHealth = health;
+        originalStealth = stealthValue;
+
+        // Increase health and stealth value by 50%
+        health += originalHealth / 2;
+        stealthValue += originalStealth / 2;
+
+        Debug.Log("Power-up activated! Increased health and stealth.");
+
+        float timer = powerUpDuration;
+        while (timer > 0)
+        {
+            Debug.Log("Power-up time left: " + Mathf.CeilToInt(timer) + " seconds");
+            timer -= Time.deltaTime;
+            yield return null;
+        }
+
+        // Revert to original values after the duration
+        health = originalHealth;
+        stealthValue = originalStealth;
+        isPowerUpActive = false;
+
+        Debug.Log("Power-up expired. Stats reverted.");
+    }
+
+    // Trigger for the power-up pickup
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("PowerUp"))
+        {
+            StartCoroutine(PowerUpCoroutine());
+            Destroy(other.gameObject);
         }
     }
 }
