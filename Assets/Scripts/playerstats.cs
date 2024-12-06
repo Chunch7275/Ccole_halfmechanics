@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class playerstats : MonoBehaviour
 {
@@ -16,7 +18,7 @@ public class playerstats : MonoBehaviour
     private float powerUpDuration = 60f;
     private int originalHealth;
     private int originalStealth;
-
+    public string levelName;
     void Start()
     {
         controller = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -42,6 +44,7 @@ public class playerstats : MonoBehaviour
     {
         Debug.Log("Player has died.");
         controller.gameOver = true;
+        SceneManager.LoadScene(levelName);
     }
 
     void UseHealItem()
